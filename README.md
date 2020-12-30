@@ -4,6 +4,9 @@ Hiện tại vì không kịp deadline nên phải nộp luôn, mới xử lý �
 ## Demo
 ![alt text](https://i.imgur.com/M0Gk6I1.png)
 
+## Đề bài
+https://drive.google.com/file/d/1rfphbgb-4dUXSsHGGMjgubeIBrEn9uuM/view
+
 ## Giải thích bài 2
 Đang update nhé, mai viết chứ giờ mệt rồi :v
 
