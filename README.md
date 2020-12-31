@@ -85,6 +85,51 @@ while(!s2.empty()){
     ... // Tính toán
 }
 ~~~
+Vậy là đã xử lý được biểu thức `s = 9+8*(7-(8+9)-2)*8+6`
+
+Còn với biểu thức `s = 9.898+8.22*(7.64-(8.2654+9.11)-2.65)*89+655.66` thì ta cần phải làm thêm vài bước
+### Tính toán biểu thức trung tố với số thập phân tùy ý:
+#### Ý tưởng:
+Mình sẽ dùng một xâu trung gian để nối các phần tử của số thập phân lại, khi gặp các toán tử hoặc dấu ngoặc thì sẽ đưa xâu vào stack 1. Và sau khi xâu được truyền vào stack s1 thì sẽ gán xâu bằng rỗng
+#### Thực hành:
+1) Khai báo xâu trung gian (ở đây mình dùng sstream)
+~~~ cpp
+std::stringstream ss; // Dùng để nối số thập phân
+~~~
+2) Ở trong vòng for như trên, mình sẽ cho một câu điều kiện rằng: nếu không phải là chữ số và dẫu chấm thì sẽ kiểm tra xem xâu ss có rỗng không, nếu rỗng thì gán b bằng ký tự đang xét rồi truyền 1 tín hiệu là có ký tự b. Nếu không rỗng thì sẽ cho a bằng ss và truyền tín hiệu là có số a
+~~~ cpp
+if(!chuso(test[i]) && test[i] != '.'){ // Nếu không phải là chữ số và dấu .
+    if(ss.rdbuf()->in_avail() == 0){ // Kiểm tra ss có chứa số không
+        b = test[i]; // b là toán tử hoặc dấu ngoặc
+    }
+    else{
+        b = test[i]; // b là toán tử hoặc dấu ngoặc
+        check = true;
+        ss >> a; // a sẽ chứa số thập phân
+        ss.str(""); // Clear ss
+        ss.clear();
+    }
+}
+~~~
+3) Nếu là chữ số hoặc dấu chấm thì đơn giản là nối s[i] đang xét vào ss. Và khi mà duyệt hết chuỗi thì đưa a bằng ss
+~~~ cpp
+else{ // Nếu là toán tử hoặc dấu ngoặc
+    if(chuso(test[i]) || test[i] == '.'){ // Nếu là chữ số hoặc dấu .
+        ss << test[i]; // Truyền vào ss
+    }
+
+    if(chuso(test[n - 1]) && i == (n - 1)){
+        check = true;
+        check2 = false;
+        ss >> a;
+        ss.str("");
+        ss.clear();
+    }
+    else{
+        continue;
+    }
+}
+~~~
 ## Giải thích bài 5
 Đối với bài 5 này mình chỉ cần duyệt và gọi hàm, sau đó thay thế là xong. Còn để áp dụng thuật toán thì hiện tại mình chưa tìm ra cái nào để áp dụng cả.
 Vậy nên mình tìm ra được cách tối ưu hơn thì sẽ update nhé.
