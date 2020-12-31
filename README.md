@@ -24,22 +24,22 @@ https://drive.google.com/file/d/1rfphbgb-4dUXSsHGGMjgubeIBrEn9uuM/view
 - Nếu không phải thì trả lại là 0
 #### Bắt đầu làm:
 1) Khai báo hai stack s1 và s2
-~~~
+~~~ cpp
 std::stack <std::string> s1;
 std::stack <char> s2;
 ~~~
 2) Dùng một vòng for duyệt hết chuỗi
-~~~
+~~~ cpp
 for(int i = 0; i < n; i++){ // Duyệt hết chuỗi
 ~~~
 3) Nếu s[i] là số thì ta cho vào stack s1
-~~~
+~~~ cpp
 if(check){ // Nếu có giá trị là số được trả về
     s1.push(a);
 }
 ~~~
 4) Nếu s[i] là một dấu mở ngoặc thì cho vào stack 2
-~~~
+~~~ cpp
 if(b == '(') // Gặp dấu mở ngoặc thì cho vào stack s2
     s2.push(b);
 ~~~
@@ -50,7 +50,7 @@ if(b == '(') // Gặp dấu mở ngoặc thì cho vào stack s2
     - Nếu độ ưu tiên của s[i] nhỏ hơn hoặc bằng độ ưu tiên của toán tử ở đỉnh stack 2 thì lấy 2 phần tử ở đỉnh stack 1 ra tính toán với toán tử ở đỉnh stack 2 (Sau khi tính toán thì nhớ xóa 2 phần tử ở stack 1 và 1 phần tử ở stack 2)
     - Nếu độ ưu tiên của s[i] lớn hơn độ ưu tiên của toán tử ở đỉnh stack 2 thì thoát khỏi vòng while
     - Tiếp theo thêm s[i] vào stack 2
-    ~~~
+    ~~~ cpp
     if(!s2.empty()){ // Nếu stack s2 không rỗng
         while(true){
             if(s2.empty()) break; // Nếu s2 rỗng thì thoát khỏi vòng lặp while
@@ -66,7 +66,7 @@ if(b == '(') // Gặp dấu mở ngoặc thì cho vào stack s2
     s2.push(b); // Thêm b vào stack s2
     ~~~
 6) Nếu s[i] là một dấu đóng ngoặc thì lấy tất cả toán tử bên trong stack 2 ra tính toán với các số bên trong stack 1 cho đến khi gặp dấu mở ngoặc thì dừng lại. Sau đó xóa dấu mở ngoặc ra khỏi stack 2
-~~~
+~~~ cpp
 if(b == ')'){ // Nếu gặp dấu đóng ngoặc
     while(true){
         if(s2.top() == '('){ // Nếu gặp dấu mở ngoặc
@@ -80,7 +80,7 @@ if(b == ')'){ // Nếu gặp dấu đóng ngoặc
 }
 ~~~
 7) Nếu đã xét hết chuỗi thì lấy tất cả toán tử bên trong stack 2 ra tính toán với các số bên trong stack 1 và cho ra kết quả
-~~~
+~~~ cpp
 while(!s2.empty()){
     ... // Tính toán
 }
