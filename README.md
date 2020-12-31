@@ -134,3 +134,56 @@ else{ // Nếu là toán tử hoặc dấu ngoặc
 Đối với bài 5 này mình chỉ cần duyệt và gọi hàm, sau đó thay thế là xong. Còn để áp dụng thuật toán thì hiện tại mình chưa tìm ra cái nào để áp dụng cả.
 Vậy nên mình tìm ra được cách tối ưu hơn thì sẽ update nhé.
 
+Trước tiên thì mình có hàm encode (Mã hóa):
+~~~ cpp
+std::string encode(char x) {
+    if(x == 'a'|| x == 'A')
+        return ".-";
+    if(x == 'b'|| x == 'B')
+        return "-...";
+    ...
+    ...
+    ...
+    return "#";
+}
+~~~
+Sau đó là hàm decode (Giải mã):
+~~~ cpp
+char decode(std::string x) {
+    if(x == ".-")
+        return 'a';
+    if(x == "-...")
+        return 'b';
+    ...
+    ...
+    ...
+    return '#';
+}
+~~~
+Đối với hàm encode, mình duyệt một vòng for xét từng ký tự được đưa vào và chuyển sang mã morse:
+~~~ cpp
+for (int i = 0; s[i]; i++){
+  if(encode(s[i]) == "#"){
+      break;
+  }
+  kq += encode(s[i]) + " ";
+}
+~~~
+Đối với hàm decode, mình dùng một xâu trung gian sau đó duyệt một vòng for xét từng ký tự được đưa vào, nếu gặp dấu cách thì đưa xâu trung gian ra rồi decode(), nếu không thì nối phần tử với xâu:
+~~~ cpp
+for (int i = 0; i <= n - luu; i++)
+{
+    if(s[i] == ' ' || i == n){
+        ss >> tg;
+        if(decode(tg) == '#'){
+            break;
+        }
+        kq += decode(tg);
+    }
+    else{
+      ss << s[i];
+    }
+}
+~~~
+
+Oke good luck!
